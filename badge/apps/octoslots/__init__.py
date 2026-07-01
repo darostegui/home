@@ -8,7 +8,7 @@
 #   A+B+C    = (held together) toggle the reel theme, saved to conf.py
 #
 # Config (conf.py, edit on the badge or in-game):
-#   RKO = 1  ->  GitHub-themed reels (octocat, star, merge, fork, GitHub mark)
+#   RKO = 1  ->  GitHub-themed reels (octocat, RKO'27, star, merge, fork, GitHub mark)
 #   RKO = 0  ->  classic casino reels (7, BAR, cherry, GitHub, bell, lemon)
 #   WIN = 1  ->  boosted payouts (credits trend upward over a long session)
 #   WIN = 0  ->  original, tighter payouts
@@ -426,7 +426,7 @@ def _update_particles():
 def _handle_idle_input():
     global bet, credits, message
     if credits <= 0:
-        if io.BUTTON_C in io.pressed or io.BUTTON_B in io.pressed or io.BUTTON_A in io.pressed:
+        if io.BUTTON_C in io.pressed:
             credits = 10
             bet = 1
             message = "Credits refilled!"
@@ -540,7 +540,7 @@ def _draw_status():
     screen.text("BET %d" % bet, 58, 100)
     screen.text("WIN %02d" % last_win, 106, 100)
     screen.font = tiny_font
-    hint = "B SPIN  UP/DN BET" if credits > 0 else "A/B/C REFILL"
+    hint = "B SPIN  UP/DN BET" if credits > 0 else "PRESS C TO REFILL"
     w, _ = screen.measure_text(hint)
     screen.brush = brushes.color(139, 148, 158)
     screen.text(hint, 80 - w / 2, 112)
